@@ -12,7 +12,6 @@ ENV PATH "${PATH}:${ANDROID_HOME}/cmdline-tools/tools/bin"
 ENV PATH "${PATH}:${ANDROID_HOME}/tools/bin"
 ENV PATH "${PATH}:${ANDROID_HOME}/build-tools/30.0.2"
 ENV PATH "${PATH}:${ANDROID_HOME}/platform-tools"
-ENV PATH "${PATH}:${ANDROID_HOME}/emulator"
 ENV PATH "${PATH}:${ANDROID_HOME}/bin"
 
 RUN dpkg --add-architecture i386 && \
@@ -33,6 +32,5 @@ RUN /opt/android-sdk-linux/cmdline-tools/tools/bin/sdkmanager "cmdline-tools;lat
 RUN /opt/android-sdk-linux/cmdline-tools/tools/bin/sdkmanager "build-tools;30.0.2"
 RUN /opt/android-sdk-linux/cmdline-tools/tools/bin/sdkmanager "platform-tools"
 RUN /opt/android-sdk-linux/cmdline-tools/tools/bin/sdkmanager "platforms;android-30"
-RUN /opt/android-sdk-linux/cmdline-tools/tools/bin/sdkmanager "system-images;android-30;google_apis;x86_64"
 
 CMD /opt/tools/entrypoint.sh built-in
