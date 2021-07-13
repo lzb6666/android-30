@@ -23,7 +23,7 @@ COPY ssh/sshd_config /etc/ssh
 
 RUN mkdir /home/android/.ssh && \
     echo ${PUB_KEY} >> /home/android/.ssh/authorized_keys && \
-    service openssh restart
+    service ssh restart
 
 COPY tools /opt/tools
 COPY licenses /opt/licenses
