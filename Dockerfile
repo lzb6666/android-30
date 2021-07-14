@@ -12,9 +12,8 @@ ENV PUB_KEY ""
 RUN echo "PATH=${PATH}:${ANDROID_HOME}/cmdline-tools/latest/bin:${ANDROID_HOME}/cmdline-tools/tools/bin:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/build-tools/30.0.2:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/emulator:${ANDROID_HOME}/bin" >> /etc/environment && \
     env | grep "ANDROID" >> /etc/environment
 
-RUN dpkg --add-architecture i386 && \
-    apt-get update -yqq && \
-    apt-get install -y curl expect git libc6:i386 libgcc1:i386 libncurses5:i386 libstdc++6:i386 zlib1g:i386 openjdk-11-jdk wget unzip vim rsync openssh-server && \
+RUN apt-get update -yqq && \
+    apt-get install -y curl expect git openjdk-11-jdk wget unzip vim rsync openssh-server && \
     apt-get clean
 
 RUN groupadd android && useradd -d /home/android -g android -s /bin/bash -m android
