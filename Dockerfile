@@ -9,7 +9,7 @@ ENV ANDROID_SDK       ${ANDROID_HOME}
 
 ENV PUB_KEY ""
 
-RUN echo "${PATH}}:${ANDROID_HOME}/cmdline-tools/latest/bin:${ANDROID_HOME}/cmdline-tools/tools/bin:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/build-tools/30.0.2:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/emulator:${ANDROID_HOME}/bin" >> /etc/environment && \
+RUN echo "PATH=${PATH}}:${ANDROID_HOME}/cmdline-tools/latest/bin:${ANDROID_HOME}/cmdline-tools/tools/bin:${ANDROID_HOME}/tools/bin:${ANDROID_HOME}/build-tools/30.0.2:${ANDROID_HOME}/platform-tools:${ANDROID_HOME}/emulator:${ANDROID_HOME}/bin" >> /etc/environment && \
     env | grep "ANDROID" >> /etc/environment
 
 RUN dpkg --add-architecture i386 && \
@@ -17,13 +17,9 @@ RUN dpkg --add-architecture i386 && \
     apt-get install -y curl expect git libc6:i386 libgcc1:i386 libncurses5:i386 libstdc++6:i386 zlib1g:i386 openjdk-11-jdk wget unzip vim rsync openssh-server && \
     apt-get clean
 
-RUN groupadd android && useradd -d /home/android -g android -m android
+RUN groupadd android && useradd -d /home/android -g android -m -s bash android
 
 COPY ssh/sshd_config /etc/ssh
-
-RUN mkdir /home/android/.ssh && \
-    echo ${PUB_KEY} >> /home/android/.ssh/authorized_keys && \
-    service ssh restart
 
 COPY tools /opt/tools
 COPY licenses /opt/licenses

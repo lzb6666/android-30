@@ -10,6 +10,10 @@ function su_mt_user() {
 
 chown android:android /opt/android-sdk-linux
 
+echo "$PUB_KEY" >> /home/android/.ssh/authorized_keys
+
+service ssh start
+
 if checkbin; then
     exec su-exec android:android /opt/tools/android-sdk-update.sh "$@"
 else
