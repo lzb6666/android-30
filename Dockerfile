@@ -17,7 +17,7 @@ RUN dpkg --add-architecture i386 && \
     apt-get install -y curl expect git libc6:i386 libgcc1:i386 libncurses5:i386 libstdc++6:i386 zlib1g:i386 openjdk-11-jdk wget unzip vim rsync openssh-server && \
     apt-get clean
 
-RUN groupadd android && useradd -d /home/android -g android -m -s bash android
+RUN groupadd android && useradd -d /home/android -g android -m -s /bin/bash android
 
 COPY ssh/sshd_config /etc/ssh
 
