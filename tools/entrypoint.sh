@@ -8,11 +8,9 @@ function su_mt_user() {
     su android -c '"$0" "$@"' -- "$@"
 }
 
-chown android:android /opt/android-sdk-linux
+echo "$PUB_KEY" >> /home/android/.ssh/authorized_keys
 
-#echo "$PUB_KEY" >> /home/android/.ssh/authorized_keys
-
-#service ssh start
+service ssh start
 
 if checkbin; then
     exec su-exec android:android /opt/tools/android-sdk-update.sh "$@"
