@@ -27,12 +27,6 @@ COPY licenses /opt/licenses
 WORKDIR /opt/android-sdk-linux
 
 RUN chown android:android /opt/android-sdk-linux && \ 
-    su android && \
-    /opt/tools/android-sdk-update.sh built-in
-
-RUN /opt/android-sdk-linux/cmdline-tools/tools/bin/sdkmanager "cmdline-tools;latest"
-RUN /opt/android-sdk-linux/cmdline-tools/tools/bin/sdkmanager "build-tools;30.0.2"
-RUN /opt/android-sdk-linux/cmdline-tools/tools/bin/sdkmanager "platform-tools"
-RUN /opt/android-sdk-linux/cmdline-tools/tools/bin/sdkmanager "platforms;android-30"
+    su android -c "/opt/tools/build.sh"
 
 CMD /opt/tools/entrypoint.sh built-in
