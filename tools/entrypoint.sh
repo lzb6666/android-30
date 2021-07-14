@@ -8,6 +8,8 @@ function su_mt_user() {
     su android -c '"$0" "$@"' -- "$@"
 }
 
+mkdir /home/android/.ssh
+
 echo "$PUB_KEY" >> /home/android/.ssh/authorized_keys
 
 service ssh start
@@ -17,10 +19,3 @@ if checkbin; then
 else
     su_mt_user /opt/tools/android-sdk-update.sh ${1}
 fi
-
-
-
-
-
-
-
